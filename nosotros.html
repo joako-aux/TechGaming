@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechGaming - Nosotros</title>
+
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light min-vh-100 d-flex flex-column">
+
+    <!-- Navbar principal del proyecto -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container">
+            <a class="navbar-brand text-info fw-bold" href="index.html">
+                ■ TechGaming
+            </a>
+
+            <!-- Menu de navegacion -->
+            <div class="navbar-nav ms-auto flex-row gap-3">
+                <a class="nav-link" href="index.html">Inicio</a>
+                <a class="nav-link" href="productos.html">Productos</a>
+                <a class="nav-link active" href="nosotros.html">Nosotros</a>
+                <a class="nav-link" href="blogs.html">Blogs</a>
+                <a class="nav-link" href="contacto.html">Contacto</a>
+                <a class="nav-link text-info" href="carrito.html">🛒 Carrito (<span id="cart-count">0</span>)</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido principal de Nosotros -->
+    <main class="container my-5">
+        
+        <!-- Tarjeta de descripcion de la empresa -->
+        <section class="bg-white p-5 rounded-3 shadow-sm mb-4">
+            <h2 class="text-dark fw-bold border-bottom border-info border-3 d-inline-block pb-1 mb-3">
+                Sobre Nosotros
+            </h2>
+            <p class="text-secondary lead fs-6">
+                Somos una empresa dedicada a entregar la mejor calidad en productos para nuestros clientes y entusiastas del mundo gamer.
+            </p>
+        </section>
+
+        <!-- Seccion del equipo de desarrollo -->
+        <section class="card shadow-sm border-0 p-4">
+            <h3 class="h5 fw-bold text-primary mb-3">Equipo de Desarrollo:</h3>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item bg-transparent ps-0">
+                    <strong>Estudiante 1</strong> - Desarrollo Front-End
+                </li>
+                <li class="list-group-item bg-transparent ps-0">
+                    <strong>Estudiante 2</strong> - Diseño y Maquetación
+                </li>
+            </ul>
+        </section>
+
+    </main>
+
+    <!-- Footer comun del sitio -->
+    <footer class="bg-dark text-white p-4 mt-auto">
+        <div class="container d-flex justify-content-between align-items-center flex-wrap gap-3">
+            <div>
+                <p class="mb-0 fw-bold">TechGaming</p>
+                <small class="text-secondary">© 2026 - Todos los derechos reservados</small>
+            </div>
+            <div>
+                <a href="productos.html" class="text-info text-decoration-none me-2">Periféricos</a> |
+                <a href="productos.html" class="text-info text-decoration-none mx-2">Componentes</a> |
+                <a href="productos.html" class="text-info text-decoration-none ms-2">Accesorios</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script del carrito para mantener el contador -->
+    <script src="js/carrito.js"></script>
+</body>
+</html>
