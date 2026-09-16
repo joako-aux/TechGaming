@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechGaming - Inicio</title>
+    <link rel="stylesheet" href="/assents/css/estilos1.html">
+</head>
+<body>
+
+    <!-- Header Principal -->
+    <header class="main-header">
+        <div class="logo">
+            <span class="square-icon">■</span>
+            <h1>TechGaming</h1>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html">Inicio</a>
+            <a href="productos.html">Productos</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="blogs.html">Blogs</a>
+            <a href="contacto.html">Contacto</a>
+        </nav>
+        <div class="cart-status">
+            <a href="carrito.html">🛒 Carrito (<span id="cart-count">0</span>)</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Barra de autenticación superior -->
+        <div class="user-bar">
+            <a href="login.html">Iniciar sesión</a> | 
+            <a href="registro.html">Registrar usuario</a>
+        </div>
+
+        <!-- Banner Principal Hero -->
+        <section class="hero-banner">
+            <div class="hero-text">
+                <h2>TIENDA ONLINE</h2>
+                <p>Encuentra el mejor equipamiento, periféricos y componentes de última generación para tu setup gamer al mejor precio del mercado.</p>
+                <a href="productos.html" class="btn-banner">⬇️ Ver Productos</a>
+            </div>
+            <div class="hero-image">
+                <img src="/assents/img/home.jpeg" alt="Banner Principal TechGaming">
+            </div>
+        </section>
+
+        <!-- Catálogo de Productos -->
+        <section class="products-grid" id="productos-destacados">
+            <!-- Renderizado dinámico -->
+        </section>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="main-footer">
+        <div class="footer-col">
+            <p><strong>TechGaming</strong></p>
+            <div class="payment-methods">
+                <span class="badge badge-visa">VISA</span>
+                <span class="badge badge-mastercard">MC</span>
+                <span class="badge badge-tc">TC</span>
+            </div>
+        </div>
+        <div class="footer-col footer-links">
+            <a href="productos.html">Periféricos</a> |
+            <a href="productos.html">Componentes</a> |
+            <a href="productos.html">Accesorios</a>
+        </div>
+        <div class="footer-col newsletter">
+            <p><small>¡Mantente en contacto! Suscríbete a nuestro boletín:</small></p>
+            <form onsubmit="alert('¡Gracias por suscribirte!'); return false;">
+                <input type="email" placeholder="Ingresa tu correo" required>
+                <button type="submit">Suscribirse</button>
+            </form>
+        </div>
+    </footer>
+
+    <script src="js/datos.js"></script>
+    <script src="js/carrito.js"></script>
+    <script>
+        const grid = document.getElementById("productos-destacados");
+        if (typeof PRODUCTOS_INICIALES !== 'undefined') {
+            PRODUCTOS_INICIALES.slice(0, 8).forEach(prod => {
+                grid.innerHTML += `
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="${prod.imagen}" alt="${prod.nombre}" onerror="this.src='https://via.placeholder.com/200x120?text=Producto'">
+                        </div>
+                        <a href="detalle-producto.html?id=${prod.id}" class="product-title">${prod.nombre}</a>
+                        <div class="product-info">
+                            <span class="attributes">Gamer / Tech</span>
+                            <span class="price">$${prod.precio.toLocaleString('es-CL')}</span>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+    </script>
+</body>
+</html>
