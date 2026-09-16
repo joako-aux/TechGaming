@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechGaming - Carrito de Compras</title>
+    <link rel="stylesheet" href="assents/css/estilos1.css">
+    <style>
+        .cart-container { width: 90%; max-width: 1000px; margin: 30px auto; }
+        .cart-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        .cart-table th, .cart-table td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        .cart-table th { background-color: #333; color: white; }
+        .cart-summary { text-align: right; font-size: 1.2rem; }
+        .btn-action { padding: 10px 20px; font-size: 1rem; cursor: pointer; border: none; margin-left: 10px; }
+        .btn-clear { background-color: #f44336; color: white; }
+        .btn-checkout { background-color: #4CAF50; color: white; }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">
+            <span class="square-icon">■</span>
+            <h1>TechGaming</h1>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html">Inicio</a>
+            <a href="productos.html">Productos</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="blogs.html">Blogs</a>
+            <a href="contacto.html">Contacto</a>
+        </nav>
+        <div class="cart-status">
+            <a href="carrito.html">🛒 Carrito (<span id="cart-count">0</span>)</a>
+        </div>
+    </header>
+
+    <div class="cart-container">
+        <h2>Tu Carrito de Compras</h2>
+        
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio Unitario</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="cart-table-body">
+                <!-- Se llena dinámicamente desde carrito.js -->
+            </tbody>
+        </table>
+
+        <div class="cart-summary">
+            <h3>Total a Pagar: <span id="cart-total">$0</span></h3>
+            <button onclick="vaciarCarrito()" class="btn-action btn-clear">Vaciar Carrito</button>
+            <button onclick="alert('¡Gracias por tu compra en TechGaming!')" class="btn-action btn-checkout">Proceder al Pago</button>
+        </div>
+    </div>
+
+    <script src="js/datos.js"></script>
+    <script src="js/carrito.js"></script>
+</body>
+</html>
