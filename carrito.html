@@ -4,62 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechGaming - Carrito de Compras</title>
-    <link rel="stylesheet" href="assents/css/estilos1.css">
-    <style>
-        .cart-container { width: 90%; max-width: 1000px; margin: 30px auto; }
-        .cart-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-        .cart-table th, .cart-table td { border: 1px solid #ddd; padding: 12px; text-align: left; }
-        .cart-table th { background-color: #333; color: white; }
-        .cart-summary { text-align: right; font-size: 1.2rem; }
-        .btn-action { padding: 10px 20px; font-size: 1rem; cursor: pointer; border: none; margin-left: 10px; }
-        .btn-clear { background-color: #f44336; color: white; }
-        .btn-checkout { background-color: #4CAF50; color: white; }
-    </style>
+
+    <!-- CDN Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-light min-vh-100 d-flex flex-column">
 
-    <header class="main-header">
-        <div class="logo">
-            <span class="square-icon">■</span>
-            <h1>TechGaming</h1>
+    <!-- Navegación principal -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container">
+            <a class="navbar-brand text-info fw-bold" href="index.html">
+                ■ TechGaming
+            </a>
+
+            <!-- Menú de navegación -->
+            <div class="navbar-nav ms-auto flex-row gap-3">
+                <a class="nav-link" href="index.html">Inicio</a>
+                <a class="nav-link" href="productos.html">Productos</a>
+                <a class="nav-link" href="nosotros.html">Nosotros</a>
+                <a class="nav-link" href="blogs.html">Blogs</a>
+                <a class="nav-link" href="contacto.html">Contacto</a>
+                <a class="nav-link active text-info" href="carrito.html">🛒 Carrito (<span id="cart-count">0</span>)</a>
+            </div>
         </div>
-        <nav class="main-nav">
-            <a href="index.html">Inicio</a>
-            <a href="productos.html">Productos</a>
-            <a href="nosotros.html">Nosotros</a>
-            <a href="blogs.html">Blogs</a>
-            <a href="contacto.html">Contacto</a>
-        </nav>
-        <div class="cart-status">
-            <a href="carrito.html">🛒 Carrito (<span id="cart-count">0</span>)</a>
+    </nav>
+
+    <!-- Contenido principal del Carrito -->
+    <main class="container my-5">
+        <div class="card shadow-sm border-0 p-4 bg-white">
+            <h2 class="text-dark fw-bold border-bottom border-info border-3 d-inline-block pb-1 mb-4">
+                Tu Carrito de Compras
+            </h2>
+
+            <!-- Tabla responsive donde carrito.js renderiza las filas usando datos.js -->
+            <div class="table-responsive mb-4">
+                <table class="table table-hover align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Precio Unitario</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Subtotal</th>
+                            <th scope="col">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-table-body">
+                        <!-- carrito.js dibuja los datos aquí -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Sección del Total General -->
+            <div class="text-end mb-4 fs-4 fw-bold text-dark">
+                Total: <span id="cart-total" class="text-primary">$0</span>
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="d-flex gap-2 flex-wrap justify-content-between pt-3 border-top">
+                <button type="button" class="btn btn-outline-danger" onclick="vaciarCarrito()">
+                    Vaciar Carrito
+                </button>
+                <a href="productos.html" class="btn btn-primary">
+                    Seguir Comprando
+                </a>
+            </div>
         </div>
-    </header>
+    </main>
 
-    <div class="cart-container">
-        <h2>Tu Carrito de Compras</h2>
-        
-        <table class="cart-table">
-            <thead>
-                <tr>
-                    <th>Producto</th>
-                    <th>Precio Unitario</th>
-                    <th>Cantidad</th>
-                    <th>Subtotal</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody id="cart-table-body">
-                <!-- Se llena dinámicamente desde carrito.js -->
-            </tbody>
-        </table>
-
-        <div class="cart-summary">
-            <h3>Total a Pagar: <span id="cart-total">$0</span></h3>
-            <button onclick="vaciarCarrito()" class="btn-action btn-clear">Vaciar Carrito</button>
-            <button onclick="alert('¡Gracias por tu compra en TechGaming!')" class="btn-action btn-checkout">Proceder al Pago</button>
+    <!-- Pie de página -->
+    <footer class="bg-dark text-white p-4 mt-auto">
+        <div class="container">
+            <div class="row g-3 align-items-center">
+                <div class="col-md-4">
+                    <p class="mb-1 fw-bold">TechGaming</p>
+                    <div>
+                        <span class="badge bg-secondary">VISA</span>
+                        <span class="badge bg-secondary">MC</span>
+                        <span class="badge bg-secondary">TC</span>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <a href="productos.html" class="text-info text-decoration-none me-2">Periféricos</a> |
+                    <a href="productos.html" class="text-info text-decoration-none mx-2">Componentes</a> |
+                    <a href="productos.html" class="text-info text-decoration-none ms-2">Accesorios</a>
+                </div>
+                <div class="col-md-4 text-end">
+                    <small class="text-secondary">© 2026 - Todos los derechos reservados</small>
+                </div>
+            </div>
         </div>
-    </div>
+    </footer>
 
+    <!-- VINCULACIÓN DE ARCHIVOS JS (En orden obligatorio) -->
     <script src="js/datos.js"></script>
     <script src="js/carrito.js"></script>
 </body>
