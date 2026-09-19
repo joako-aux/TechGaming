@@ -4,77 +4,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechGaming - Inicio</title>
-    <link rel="stylesheet" href="assents/css/estilos1.css">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-light min-vh-100 d-flex flex-column">
 
-    <!-- Header Principal -->
-    <header class="main-header">
-        <div class="logo">
-            <span class="square-icon">■</span>
-            <h1>TechGaming</h1>
+    <!-- Barra de navegación principal -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand text-info fw-bold" href="index.html">■ TechGaming</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav me-auto">
+                    <a class="nav-link active" href="index.html">Inicio</a>
+                    <a class="nav-link" href="productos.html">Productos</a>
+                    <a class="nav-link" href="nosotros.html">Nosotros</a>
+                    <a class="nav-link" href="blogs.html">Blogs</a>
+                    <a class="nav-link" href="contacto.html">Contacto</a>
+                </div>
+                <!-- Barra de autenticación y carrito -->
+                <div class="d-flex align-items-center gap-3">
+                    <div class="text-secondary small">
+                        <a href="login.html" class="text-white text-decoration-none">Iniciar sesión</a> | 
+                        <a href="registro.html" class="text-white text-decoration-none">Registrar usuario</a>
+                    </div>
+                    <a class="btn btn-outline-info btn-sm" href="carrito.html">
+                        🛒 Carrito (<span id="cart-count">0</span>)
+                    </a>
+                </div>
+            </div>
         </div>
-        <nav class="main-nav">
-            <a href="index.html">Inicio</a>
-            <a href="productos.html">Productos</a>
-            <a href="nosotros.html">Nosotros</a>
-            <a href="blogs.html">Blogs</a>
-            <a href="contacto.html">Contacto</a>
-        </nav>
-        <div class="cart-status">
-            <a href="carrito.html">🛒 Carrito (<span id="cart-count">0</span>)</a>
-        </div>
-    </header>
+    </nav>
 
-    <div class="container">
-        <!-- Barra de autenticación superior -->
-        <div class="user-bar">
-            <a href="login.html">Iniciar sesión</a> | 
-            <a href="registro.html">Registrar usuario</a>
-        </div>
-
+    <!-- Contenido Principal -->
+    <main class="container my-5 flex-grow-1">
+        
         <!-- Banner Principal Hero -->
-        <section class="hero-banner">
-            <div class="hero-text">
-                <h2>TIENDA ONLINE</h2>
-                <p>Encuentra el mejor equipamiento, periféricos y componentes de última generación para tu setup gamer al mejor precio del mercado.</p>
-                <a href="productos.html" class="btn-banner">⬇️ Ver Productos</a>
-            </div>
-            <div class="hero-image">
-                <img src="assents/img/home.jpeg" alt="Banner Principal TechGaming">
+        <section class="card bg-dark text-white border-0 shadow rounded-4 overflow-hidden mb-5">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-6 p-4 p-md-5">
+                    <h1 class="display-5 fw-bold text-info">TIENDA ONLINE</h1>
+                    <p class="lead text-light">Encuentra el mejor equipamiento, periféricos y componentes de última generación para tu setup gamer al mejor precio del mercado.</p>
+                    <a href="productos.html" class="btn btn-info btn-lg fw-bold text-dark mt-2">⬇️ Ver Productos</a>
+                </div>
+                <div class="col-md-6">
+                    <img src="assets/img/home.jpeg" alt="Banner Principal TechGaming" class="img-fluid w-100 h-100 object-fit-cover" onerror="this.src='https://via.placeholder.com/600x400?text=Banner+TechGaming'">
+                </div>
             </div>
         </section>
 
-        <!-- Catálogo de Productos -->
-        <section class="products-grid" id="productos-destacados">
-            <!-- Renderizado dinámico -->
-        </section>
-    </div>
-
-    <!-- Pie de página -->
-    <footer class="main-footer">
-        <div class="footer-col">
-            <p><strong>TechGaming</strong></p>
-            <div class="payment-methods">
-                <span class="badge badge-visa">VISA</span>
-                <span class="badge badge-mastercard">MC</span>
-                <span class="badge badge-tc">TC</span>
+        <!-- Catálogo de Productos Destacados -->
+        <section class="mb-4">
+            <h3 class="text-dark fw-bold border-bottom border-info border-3 d-inline-block pb-1 mb-4">Productos Destacados</h3>
+            
+            <!-- Grid de Bootstrap para renderizado dinámico -->
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4" id="productos-destacados">
+                <!-- Los productos se cargarán dinámicamente vía JavaScript -->
             </div>
-        </div>
-        <div class="footer-col footer-links">
-            <a href="productos.html">Periféricos</a> |
-            <a href="productos.html">Componentes</a> |
-            <a href="productos.html">Accesorios</a>
-        </div>
-        <div class="footer-col newsletter">
-            <p><small>¡Mantente en contacto! Suscríbete a nuestro boletín:</small></p>
-            <form onsubmit="alert('¡Gracias por suscribirte!'); return false;">
-                <input type="email" placeholder="Ingresa tu correo" required>
-                <button type="submit">Suscribirse</button>
-            </form>
+        </section>
+
+    </main>
+
+    <!-- Pie de Página -->
+    <footer class="bg-dark text-white p-4 mt-auto">
+        <div class="container">
+            <div class="row gy-4 align-items-center">
+                <div class="col-md-4 text-center text-md-start">
+                    <p class="fw-bold mb-2">TechGaming</p>
+                    <div class="d-flex gap-2 justify-content-center justify-content-md-start">
+                        <span class="badge bg-primary">VISA</span>
+                        <span class="badge bg-danger">MC</span>
+                        <span class="badge bg-secondary">TC</span>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <a href="productos.html" class="text-secondary text-decoration-none mx-2">Periféricos</a> |
+                    <a href="productos.html" class="text-secondary text-decoration-none mx-2">Componentes</a> |
+                    <a href="productos.html" class="text-secondary text-decoration-none mx-2">Accesorios</a>
+                </div>
+                <div class="col-md-4 text-center text-md-end">
+                    <p class="small text-secondary mb-2">¡Suscríbete a nuestro boletín!</p>
+                    <form onsubmit="alert('¡Gracias por suscribirte!'); return false;" class="d-flex gap-2">
+                        <input type="email" class="form-control form-control-sm" placeholder="Ingresa tu correo" required>
+                        <button type="submit" class="btn btn-info btn-sm fw-bold">Suscribirse</button>
+                    </form>
+                </div>
+            </div>
+            <div class="text-center text-secondary small border-top border-secondary pt-3 mt-4">
+                © 2026 TechGaming - Todos los derechos reservados
+            </div>
         </div>
     </footer>
 
+    <!-- Bootstrap JS (necesario para el menú responsive) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Scripts de Datos y Lógica -->
     <script src="js/datos.js"></script>
     <script src="js/carrito.js"></script>
     <script>
@@ -82,21 +109,22 @@
     if (typeof PRODUCTOS_INICIALES !== 'undefined') {
         PRODUCTOS_INICIALES.slice(0, 8).forEach(prod => {
             grid.innerHTML += `
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="${prod.imagen}" alt="${prod.nombre}" onerror="this.src='https://via.placeholder.com/200x120?text=Producto'">
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 p-2">
+                        <img src="${prod.imagen}" class="card-img-top object-fit-cover" alt="${prod.nombre}" style="height: 180px;" onerror="this.src='https://via.placeholder.com/200x180?text=Producto'">
+                        <div class="card-body d-flex flex-column p-2">
+                            <a href="detalle-producto.html?id=${prod.id}" class="card-title text-decoration-none text-dark fw-bold h6 mb-2">${prod.nombre}</a>
+                            <small class="text-muted mb-2">Gamer / Tech</small>
+                            <span class="fs-5 fw-bold text-primary mb-3">$${prod.precio.toLocaleString('es-CL')}</span>
+                            <button onclick="agregarAlCarrito(${prod.id})" class="btn btn-primary mt-auto w-100 btn-sm">
+                                🛒 Agregar al Carrito
+                            </button>
+                        </div>
                     </div>
-                    <a href="detalle-producto.html?id=${prod.id}" class="product-title">${prod.nombre}</a>
-                    <div class="product-info">
-                        <span class="attributes">Gamer / Tech</span>
-                        <span class="price">$${prod.precio.toLocaleString('es-CL')}</span>
-                    </div>
-                    <!-- Botón para agregar al carrito -->
-                    <button onclick="agregarAlCarrito(${prod.id})" class="btn-add-cart" style="margin-top: 10px; width: 100%; padding: 8px; cursor: pointer;">🛒 Agregar al Carrito</button>
                 </div>
             `;
         });
     }
-</script>
+    </script>
 </body>
 </html>

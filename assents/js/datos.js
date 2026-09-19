@@ -6,7 +6,7 @@ const PRODUCTOS_INICIALES = [
         nombre: "Teclado Mecánico RGB Redragon Kumara",
         precio: 34990,
         categoria: "Periféricos",
-        imagen: "assents/img/teclado.jpg",
+        imagen: "assets/img/teclado.jpg",
         descripcion: "Teclado mecánico compacto con switches red y retroiluminación RGB configurable."
     },
     {
@@ -14,7 +14,7 @@ const PRODUCTOS_INICIALES = [
         nombre: "Mouse Gamer Logitech G203 Lightsync",
         precio: 21990,
         categoria: "Periféricos",
-        imagen: "assents/img/mouse.jpg",
+        imagen: "assets/img/mouse.jpg",
         descripcion: "Sensor óptico de alta precisión hasta 8,000 DPI e iluminación RGB personalizable."
     },
     {
@@ -22,7 +22,7 @@ const PRODUCTOS_INICIALES = [
         nombre: "Audífonos Gamer HyperX Cloud II",
         precio: 68990,
         categoria: "Periféricos",
-        imagen: "assents/img/audifonos.jpg",
+        imagen: "assets/img/audifonos.jpg",
         descripcion: "Sonido envolvente 7.1, almohadillas de espuma viscoelástica y micrófono con cancelación de ruido."
     },
     {
@@ -30,7 +30,7 @@ const PRODUCTOS_INICIALES = [
         nombre: "Monitor Gaming ASUS TUF 24\" 165Hz",
         precio: 149900,
         categoria: "Monitores",
-        imagen: "assents/img/monitor.jpg",
+        imagen: "assets/img/monitor.jpg",
         descripcion: "Pantalla Full HD IPS con 1ms de tiempo de respuesta y soporte FreeSync Premium."
     },
     {
@@ -38,7 +38,7 @@ const PRODUCTOS_INICIALES = [
         nombre: "Tarjeta de Video NVIDIA RTX 4060 8GB",
         precio: 349900,
         categoria: "Componentes",
-        imagen: "assents/img/gpu.jpg",
+        imagen: "assets/img/gpu.jpg",
         descripcion: "Arquitectura Ada Lovelace con trazado de rayos y tecnología DLSS 3."
     },
     {
@@ -46,7 +46,7 @@ const PRODUCTOS_INICIALES = [
         nombre: "Procesador AMD Ryzen 5 5600X",
         precio: 139900,
         categoria: "Componentes",
-        imagen: "assents/img/procesador.jpg",
+        imagen: "assets/img/procesador.jpg",
         descripcion: "6 núcleos y 12 hilos hasta 4.6 GHz, ideal para gaming de alto rendimiento."
     },
     {
@@ -54,7 +54,7 @@ const PRODUCTOS_INICIALES = [
         nombre: "Silla Gamer Ergonomica Cougar Armour",
         precio: 129900,
         categoria: "Accesorios",
-        imagen: "assents/img/silla.jpg",
+        imagen: "assets/img/silla.jpg",
         descripcion: "Diseño ergonómico con reclinación de 180 grados y soporte lumbar regulable."
     },
     {
@@ -62,7 +62,7 @@ const PRODUCTOS_INICIALES = [
         nombre: "Mousepad XL RGB Razer Goliathus",
         precio: 18990,
         categoria: "Accesorios",
-        imagen: "assents/img/mousepad.jpg",
+        imagen: "assets/img/mousepad.jpg",
         descripcion: "Superficie de microtextura optimizada para todo tipo de sensores e iluminación bordada."
     }
 ];
