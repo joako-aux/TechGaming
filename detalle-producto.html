@@ -4,77 +4,127 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalle del Producto - TechGaming</title>
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light min-vh-100 d-flex flex-column">
 
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <!-- Barra de Navegación -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand text-info fw-bold" href="index.html">■ TechGaming</a>
-            <div class="navbar-nav ms-auto flex-row gap-3">
-                <a class="nav-link" href="index.html">Inicio</a>
-                <a class="nav-link active" href="productos.html">Productos</a>
-                <a class="nav-link" href="nosotros.html">Nosotros</a>
-                <a class="nav-link" href="blogs.html">Blogs</a>
-                <a class="nav-link" href="contacto.html">Contacto</a>
-                <a class="nav-link text-info" href="carrito.html">🛒 Carrito (<span id="cart-count">0</span>)</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav me-auto">
+                    <a class="nav-link" href="index.html">Inicio</a>
+                    <a class="nav-link active" href="productos.html">Productos</a>
+                    <a class="nav-link" href="nosotros.html">Nosotros</a>
+                    <a class="nav-link" href="blogs.html">Blogs</a>
+                    <a class="nav-link" href="contacto.html">Contacto</a>
+                </div>
+                <!-- Barra de autenticación y carrito -->
+                <div class="d-flex align-items-center gap-3">
+                    <div class="text-secondary small">
+                        <a href="login.html" class="text-white text-decoration-none">Iniciar sesión</a> | 
+                        <a href="registro.html" class="text-white text-decoration-none">Registrar usuario</a>
+                    </div>
+                    <a class="btn btn-outline-info btn-sm" href="carrito.html">
+                        🛒 Carrito (<span id="cart-count">0</span>)
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <main class="container my-5">
-        <div class="card shadow-sm border-0 p-4 bg-white" id="detalle-container">
-            <!-- Renderizado dinámico vía Script -->
+    <!-- Contenido Principal -->
+    <main class="container my-5 flex-grow-1">
+        <!-- Contenedor donde se cargará el producto dinámicamente -->
+        <div class="card shadow-sm border-0 p-4 bg-white rounded-3" id="detalle-container">
+            <div class="text-center py-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Cargando producto...</span>
+                </div>
+                <p class="text-muted mt-2">Cargando información del producto...</p>
+            </div>
         </div>
     </main>
 
+    <!-- Pie de Página -->
     <footer class="bg-dark text-white p-4 mt-auto">
         <div class="container text-center text-md-start">
-            <p class="mb-0 fw-bold">TechGaming</p>
-            <small class="text-secondary">© 2026 - Todos los derechos reservados</small>
+            <div class="row gy-3 align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0 fw-bold">TechGaming</p>
+                    <small class="text-secondary">© 2026 - Todos los derechos reservados</small>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="productos.html" class="text-secondary text-decoration-none me-3">Productos</a>
+                    <a href="contacto.html" class="text-secondary text-decoration-none">Contacto</a>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <script src="js/datos.js"></script>
-    <script src="js/carrito.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Scripts del Proyecto (Apuntando a la carpeta assents) -->
+    <script src="assents/js/datos.js"></script>
+    <script src="assents/js/carrito.js"></script>
+
+    <!-- Lógica de renderizado del producto -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            // 1. Obtener el contenedor HTML
             const container = document.getElementById("detalle-container");
-            const urlParams = new URLSearchParams(window.location.search);
-            const prodId = parseInt(urlParams.get("id"));
 
-            let producto = null;
-            if (typeof PRODUCTOS_INICIALES !== 'undefined') {
-                producto = PRODUCTOS_INICIALES.find(p => p.id === prodId);
+            if (!container) {
+                console.error("No se encontró el elemento id='detalle-container'");
+                return;
             }
 
+            // 2. Leer la ID desde la URL (?id=...)
+            const urlParams = new URLSearchParams(window.location.search);
+            const paramId = urlParams.get("id");
+
+            let producto = null;
+
+            // 3. Buscar el producto en el array global
+            if (typeof PRODUCTOS_INICIALES !== 'undefined' && paramId) {
+                producto = PRODUCTOS_INICIALES.find(p => String(p.id) === String(paramId));
+            }
+
+            // 4. Si el producto no se encuentra o no existe la ID
             if (!producto) {
                 container.innerHTML = `
-                    <div class="text-center py-4">
-                        <h3>Producto no encontrado</h3>
+                    <div class="text-center py-5">
+                        <h3 class="fw-bold text-dark">Producto no encontrado</h3>
                         <p class="text-muted">El producto seleccionado no existe o fue removido.</p>
-                        <a href="productos.html" class="btn btn-primary mt-2">Volver al Catálogo</a>
+                        <a href="productos.html" class="btn btn-primary mt-3">← Volver al Catálogo</a>
                     </div>
                 `;
                 return;
             }
 
+            // 5. Renderizar los datos del producto
             container.innerHTML = `
                 <div class="row g-4 align-items-center">
                     <div class="col-md-5 text-center">
-                        <img src="${producto.imagen}" alt="${producto.nombre}" class="img-fluid rounded p-3" style="max-height: 300px; object-fit: contain;">
+                        <img src="${producto.imagen}" alt="${producto.nombre}" class="img-fluid rounded p-3" style="max-height: 350px; object-fit: contain;" onerror="this.src='https://via.placeholder.com/350?text=Sin+Imagen'">
                     </div>
                     <div class="col-md-7">
-                        <span class="badge bg-info text-dark mb-2">${producto.categoria || 'Gamer'}</span>
+                        <span class="badge bg-info text-dark mb-2 fs-6">${producto.categoria || 'Gamer'}</span>
                         <h2 class="fw-bold text-dark">${producto.nombre}</h2>
-                        <h3 class="text-primary fw-bold my-3">$${producto.precio.toLocaleString('es-CL')}</h3>
-                        <p class="text-secondary mb-4">${producto.descripcion || 'Sin descripción disponible.'}</p>
+                        <h3 class="text-primary fw-bold my-3">$${Number(producto.precio).toLocaleString('es-CL')}</h3>
+                        <p class="text-secondary fs-6 mb-4">${producto.descripcion || 'Sin descripción disponible para este producto.'}</p>
                         
-                        <div class="d-flex gap-2 flex-wrap">
-                            <button onclick="agregarAlCarrito(${producto.id})" class="btn btn-primary">
+                        <div class="d-flex gap-3 flex-wrap align-items-center">
+                            <button onclick="agregarAlCarrito('${producto.id}')" class="btn btn-primary btn-lg fw-bold">
                                 🛒 Agregar al Carrito
                             </button>
-                            <a href="productos.html" class="btn btn-outline-secondary">
+                            <a href="productos.html" class="btn btn-outline-secondary btn-lg">
                                 ← Volver a Productos
                             </a>
                         </div>

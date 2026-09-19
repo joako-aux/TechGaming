@@ -10,26 +10,36 @@
 </head>
 <body class="bg-light min-vh-100 d-flex flex-column">
 
-    <!-- Navbar principal del proyecto -->
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <!-- Barra de navegación principal (Idéntica a index.html) -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand text-info fw-bold" href="index.html">
-                ■ TechGaming
-            </a>
-
-            <!-- Menu de navegacion -->
-            <div class="navbar-nav ms-auto flex-row gap-3">
-                <a class="nav-link" href="index.html">Inicio</a>
-                <a class="nav-link" href="productos.html">Productos</a>
-                <a class="nav-link active" href="nosotros.html">Nosotros</a>
-                <a class="nav-link" href="blogs.html">Blogs</a>
-                <a class="nav-link" href="contacto.html">Contacto</a>
-                <a class="nav-link text-info" href="carrito.html">🛒 Carrito (<span id="cart-count">0</span>)</a>
+            <a class="navbar-brand text-info fw-bold" href="index.html">■ TechGaming</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav me-auto">
+                    <a class="nav-link" href="index.html">Inicio</a>
+                    <a class="nav-link" href="productos.html">Productos</a>
+                    <a class="nav-link active" href="nosotros.html">Nosotros</a>
+                    <a class="nav-link" href="blogs.html">Blogs</a>
+                    <a class="nav-link" href="contacto.html">Contacto</a>
+                </div>
+                <!-- Barra de autenticación y carrito -->
+                <div class="d-flex align-items-center gap-3">
+                    <div class="text-secondary small">
+                        <a href="login.html" class="text-white text-decoration-none">Iniciar sesión</a> | 
+                        <a href="registro.html" class="text-white text-decoration-none">Registrar usuario</a>
+                    </div>
+                    <a class="btn btn-outline-info btn-sm" href="carrito.html">
+                        🛒 Carrito (<span id="cart-count">0</span>)
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
 
-   <main class="container my-5">
+    <main class="container my-5 flex-grow-1">
         
         <!-- Seccion unificada Sobre Nosotros -->
         <section class="bg-white p-5 rounded-3 shadow-sm mb-4">
@@ -87,7 +97,7 @@
         </div>
 
         <!-- Equipo de Desarrollo -->
-        <section class="card shadow-sm border-0 p-4">
+        <section class="card shadow-sm border-0 p-4 mb-4">
             <h3 class="h5 fw-bold text-primary mb-3">Equipo de Desarrollo:</h3>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item bg-transparent ps-0">
@@ -101,22 +111,42 @@
 
     </main>
 
-    <!-- Footer comun del sitio -->
+    <!-- Pie de Página (Idéntico a index.html) -->
     <footer class="bg-dark text-white p-4 mt-auto">
-        <div class="container d-flex justify-content-between align-items-center flex-wrap gap-3">
-            <div>
-                <p class="mb-0 fw-bold">TechGaming</p>
-                <small class="text-secondary">© 2026 - Todos los derechos reservados</small>
+        <div class="container">
+            <div class="row gy-4 align-items-center">
+                <div class="col-md-4 text-center text-md-start">
+                    <p class="fw-bold mb-2">TechGaming</p>
+                    <div class="d-flex gap-2 justify-content-center justify-content-md-start">
+                        <span class="badge bg-primary">VISA</span>
+                        <span class="badge bg-danger">MC</span>
+                        <span class="badge bg-secondary">TC</span>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <a href="productos.html" class="text-secondary text-decoration-none mx-2">Periféricos</a> |
+                    <a href="productos.html" class="text-secondary text-decoration-none mx-2">Componentes</a> |
+                    <a href="productos.html" class="text-secondary text-decoration-none mx-2">Accesorios</a>
+                </div>
+                <div class="col-md-4 text-center text-md-end">
+                    <p class="small text-secondary mb-2">¡Suscríbete a nuestro boletín!</p>
+                    <form onsubmit="alert('¡Gracias por suscribirte!'); return false;" class="d-flex gap-2">
+                        <input type="email" class="form-control form-control-sm" placeholder="Ingresa tu correo" required>
+                        <button type="submit" class="btn btn-info btn-sm fw-bold">Suscribirse</button>
+                    </form>
+                </div>
             </div>
-            <div>
-                <a href="productos.html" class="text-info text-decoration-none me-2">Periféricos</a> |
-                <a href="productos.html" class="text-info text-decoration-none mx-2">Componentes</a> |
-                <a href="productos.html" class="text-info text-decoration-none ms-2">Accesorios</a>
+            <div class="text-center text-secondary small border-top border-secondary pt-3 mt-4">
+                © 2026 TechGaming - Todos los derechos reservados
             </div>
         </div>
     </footer>
 
-    <!-- Script del carrito para mantener el contador -->
-    <script src="js/carrito.js"></script>
+    <!-- Bootstrap JS (necesario para el menú responsive) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Scripts de Datos y Carrito -->
+    <script src="assents/js/datos.js"></script>
+    <script src="assents/js/carrito.js"></script>
 </body>
 </html>

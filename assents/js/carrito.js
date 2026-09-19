@@ -18,7 +18,8 @@ function agregarAlCarrito(idProducto, cantidad = 1) {
         return;
     }
 
-    const productoEncontrado = PRODUCTOS_INICIALES.find(p => p.id === idProducto);
+    // Convertimos ambos ID a String para que coincidan (evita fallos entre Number y String)
+    const productoEncontrado = PRODUCTOS_INICIALES.find(p => String(p.id) === String(idProducto));
     
     if (!productoEncontrado) {
         alert("Producto no encontrado.");
@@ -26,11 +27,11 @@ function agregarAlCarrito(idProducto, cantidad = 1) {
     }
 
     let carrito = obtenerCarrito();
-    const index = carrito.findIndex(p => p.id === idProducto);
+    const index = carrito.findIndex(p => String(p.id) === String(idProducto));
 
     if (index !== -1) {
         // Si el producto ya existe en el carrito, sumamos la cantidad
-        carrito[index].cantidad += cantidad;
+        carrito[index].cantidad += Number(cantidad);
     } else {
         // Si no existe, lo agregamos como nuevo ítem
         carrito.push({
@@ -38,7 +39,7 @@ function agregarAlCarrito(idProducto, cantidad = 1) {
             nombre: productoEncontrado.nombre,
             precio: productoEncontrado.precio,
             imagen: productoEncontrado.imagen,
-            cantidad: cantidad
+            cantidad: Number(cantidad)
         });
     }
 
@@ -49,7 +50,7 @@ function agregarAlCarrito(idProducto, cantidad = 1) {
 // 4. Eliminar producto del carrito
 function eliminarDelCarrito(idProducto) {
     let carrito = obtenerCarrito();
-    carrito = carrito.filter(prod => prod.id !== idProducto);
+    carrito = carrito.filter(prod => String(prod.id) !== String(idProducto));
     guardarCarrito(carrito);
     renderizarPaginaCarrito(); // Re-renderizar si estamos en la página del carrito
 }
@@ -57,14 +58,14 @@ function eliminarDelCarrito(idProducto) {
 // 5. Cambiar la cantidad de un producto
 function cambiarCantidad(idProducto, nuevaCantidad) {
     let carrito = obtenerCarrito();
-    const index = carrito.findIndex(p => p.id === idProducto);
+    const index = carrito.findIndex(p => String(p.id) === String(idProducto));
 
     if (index !== -1) {
         if (nuevaCantidad <= 0) {
             eliminarDelCarrito(idProducto);
             return;
         }
-        carrito[index].cantidad = parseInt(nuevaCantidad);
+        carrito[index].cantidad = parseInt(nuevaCantidad, 10);
         guardarCarrito(carrito);
         renderizarPaginaCarrito();
     }
@@ -84,7 +85,7 @@ function actualizarContadorCarrito() {
     const cartCountElement = document.getElementById("cart-count");
     if (cartCountElement) {
         const carrito = obtenerCarrito();
-        const totalItems = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+        const totalItems = carrito.reduce((acc, item) => acc + (Number(item.cantidad) || 0), 0);
         cartCountElement.textContent = totalItems;
     }
 }
@@ -114,7 +115,7 @@ function renderizarPaginaCarrito() {
     let totalGeneral = 0;
 
     carrito.forEach(prod => {
-        const subtotal = prod.precio * prod.cantidad;
+        const subtotal = Number(prod.precio) * Number(prod.cantidad);
         totalGeneral += subtotal;
 
         html += `
@@ -123,13 +124,13 @@ function renderizarPaginaCarrito() {
                     <img src="${prod.imagen}" alt="${prod.nombre}" style="width: 50px; height: 50px; object-fit: cover; vertical-align: middle;" onerror="this.src='https://via.placeholder.com/50'">
                     <strong>${prod.nombre}</strong>
                 </td>
-                <td>$${prod.precio.toLocaleString('es-CL')}</td>
+                <td>$${Number(prod.precio).toLocaleString('es-CL')}</td>
                 <td>
-                    <input type="number" min="1" value="${prod.cantidad}" onchange="cambiarCantidad(${prod.id}, this.value)" style="width: 50px; text-align: center;">
+                    <input type="number" min="1" value="${prod.cantidad}" onchange="cambiarCantidad('${prod.id}', this.value)" style="width: 50px; text-align: center;">
                 </td>
                 <td>$${subtotal.toLocaleString('es-CL')}</td>
                 <td>
-                    <button onclick="eliminarDelCarrito(${prod.id})" style="background-color: #ff4d4d; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 4px;">❌ Eliminar</button>
+                    <button onclick="eliminarDelCarrito('${prod.id}')" style="background-color: #ff4d4d; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 4px;">❌ Eliminar</button>
                 </td>
             </tr>
         `;
