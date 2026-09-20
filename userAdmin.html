@@ -11,13 +11,25 @@
 <body class="bg-light min-vh-100 d-flex flex-column">
 
     <!-- Barra de navegación principal -->
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
+     <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand text-info fw-bold" href="index.html">■ TechGaming</a>
-            <div class="d-flex align-items-center gap-3">
-                <span id="nav-user-name" class="text-white fw-bold me-2">Administrador</span>
-                <button onclick="cerrarSesion()" class="btn btn-outline-danger btn-sm">Cerrar sesión</button>
-            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav me-auto">
+                    <a class="nav-link" href="index.html">Inicio</a>
+                    <a class="nav-link" href="productos.html">Productos</a>
+                    <a class="nav-link" href="nosotros.html">Nosotros</a>
+                    <a class="nav-link" href="blogs.html">Blogs</a>
+                    <a class="nav-link" href="contacto.html">Contacto</a>
+                </div>
+                <!-- Barra de autenticación y carrito -->
+                <div class="d-flex align-items-center gap-3">
+                    <span id="nav-user-name" class="text-white fw-bold me-2">Administrador</span>
+                    <button onclick="cerrarSesion()" class="btn btn-outline-danger btn-sm">Cerrar sesión</button>
+                </div>
         </div>
     </nav>
 

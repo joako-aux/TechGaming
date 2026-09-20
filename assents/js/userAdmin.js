@@ -1,8 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // 1. Validar sesión activa y que el usuario sea Administrador
-    const usuarioLogueado = JSON.parse(sessionStorage.getItem("usuarioLogueado"));
+    // 1. Validar sesión activa en localStorage
+    const usuarioLogueado = JSON.parse(localStorage.getItem("usuarioLogueado"));
 
-    if (!usuarioLogueado || usuarioLogueado.correo !== "admin@duoc.cl") {
+    // Permite el paso si es admin@duoc.cl O si tiene el rol 'admin' / 'Administrador'
+    const esAdmin = usuarioLogueado && (
+        usuarioLogueado.correo === "admin@duoc.cl" || 
+        usuarioLogueado.rol === "admin" || 
+        usuarioLogueado.rol === "Administrador"
+    );
+
+    if (!esAdmin) {
         alert("Acceso denegado. Se requieren permisos de administrador.");
         window.location.href = "login.html";
         return;
@@ -250,7 +257,7 @@ function cambiarRolUsuario(index, nuevoRol) {
     if (!usuarios[index]) return;
 
     // 1. Prevenir quitarse el rol de Administrador a sí mismo
-    const usuarioLogueado = JSON.parse(sessionStorage.getItem("usuarioLogueado"));
+    const usuarioLogueado = JSON.parse(localStorage.getItem("usuarioLogueado"));
     if (usuarioLogueado && usuarios[index].correo === usuarioLogueado.correo && nuevoRol !== "Administrador") {
         alert("No puedes quitarte el rol de Administrador a ti mismo.");
         renderizarTablaUsuarios(); // Revertir visualmente el select
@@ -261,10 +268,10 @@ function cambiarRolUsuario(index, nuevoRol) {
     usuarios[index].rol = nuevoRol;
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
-    // 3. NUEVO: Si el usuario editado es el que tiene la sesión activa, actualizar sessionStorage
+    // 3. Si el usuario editado es el que tiene la sesión activa, actualizar localStorage
     if (usuarioLogueado && usuarioLogueado.correo === usuarios[index].correo) {
         usuarioLogueado.rol = nuevoRol;
-        sessionStorage.setItem("usuarioLogueado", JSON.stringify(usuarioLogueado));
+        localStorage.setItem("usuarioLogueado", JSON.stringify(usuarioLogueado));
     }
 
     alert(`El rol de ${usuarios[index].nombre} se actualizó a: "${nuevoRol}".`);
@@ -284,12 +291,13 @@ function eliminarUsuario(index) {
         alert("Usuario eliminado correctamente.");
     }
 }
+
 // ==========================================
 // SECCIÓN 3: CONTROL DE SESIÓN
 // ==========================================
 
 function cerrarSesion() {
-    sessionStorage.removeItem("usuarioLogueado");
+    localStorage.removeItem("usuarioLogueado");
     alert("Sesión cerrada correctamente.");
     window.location.href = "login.html";
 }

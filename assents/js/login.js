@@ -1,48 +1,53 @@
+// Función principal para procesar e iniciar sesión
 function validarLogin(event) {
+    // 1. Evitar que el formulario se recargue/envíe automáticamente
     event.preventDefault();
 
+    // 2. Capturar y limpiar valores de los inputs
     const correo = document.getElementById("correo").value.trim().toLowerCase();
     const password = document.getElementById("password").value;
 
-    // --- NUEVO: Validar RF-02 (Dominios permitidos) ---
+    // 3. Validar RF-02: Dominios de correo permitidos
     const dominiosPermitidos = ["@duoc.cl", "@profesor.duoc.cl", "@gmail.com", "@techgaming.cl"];
     const esDominioValido = dominiosPermitidos.some(dominio => correo.endsWith(dominio));
 
     if (!esDominioValido) {
         alert("El dominio del correo ingresado no está permitido. Solo se aceptan correos @duoc.cl, @profesor.duoc.cl, @gmail.com o @techgaming.cl.");
-        return; // Detiene la ejecución si el dominio no es válido
+        return; // Detiene la ejecución
     }
-    // -------------------------------------------------
 
-    // 1. Validar si es el usuario Administrador
+    // 4. Caso Especial: Validar usuario Administrador
     if (correo === "admin@duoc.cl" && password === "admin") {
         const usuarioAdmin = {
             nombre: "Administrador",
             correo: "admin@duoc.cl",
             rol: "admin"
         };
-        // Guardamos la sesión activa en sessionStorage
-        sessionStorage.setItem("usuarioLogueado", JSON.stringify(usuarioAdmin));
+        
+        // Guardar sesión activa en localStorage
+        localStorage.setItem("usuarioLogueado", JSON.stringify(usuarioAdmin));
         
         alert("¡Bienvenido Administrador!");
         window.location.href = "userAdmin.html";
         return;
     }
 
-    // 2. Obtener la lista de usuarios registrados desde localStorage
+    // 5. Obtener lista de usuarios registrados previamente desde localStorage
     const usuariosRegistrados = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-    // Buscar si existe un usuario que coincida con el correo y contraseña
+    // 6. Buscar si el correo y la contraseña coinciden
     const usuarioValido = usuariosRegistrados.find(
         user => user.correo.toLowerCase() === correo && user.password === password
     );
 
-    // 3. Redirección o mensaje de error
+    // 7. Resultado del inicio de sesión
     if (usuarioValido) {
-        // Guardamos la sesión activa en sessionStorage
-        sessionStorage.setItem("usuarioLogueado", JSON.stringify(usuarioValido));
+        // Guardar la sesión activa del usuario regular
+        localStorage.setItem("usuarioLogueado", JSON.stringify(usuarioValido));
 
         alert(`¡Bienvenido de nuevo, ${usuarioValido.nombre}!`);
+        
+        // Redirigir a la página principal
         window.location.href = "user.html";
     } else {
         alert("Correo electrónico o contraseña incorrectos.");

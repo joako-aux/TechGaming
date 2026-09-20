@@ -11,7 +11,7 @@
 <body class="bg-light min-vh-100 d-flex flex-column">
 
     <!-- Barra de navegación principal (Idéntica a index.html) -->
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top border-bottom border-secondary">
         <div class="container">
             <a class="navbar-brand text-info fw-bold" href="index.html">■ TechGaming</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -19,18 +19,23 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div class="navbar-nav me-auto">
-                    <a class="nav-link" href="index.html">Inicio</a>
+                    <a class="nav-link active" href="index.html">Inicio</a>
                     <a class="nav-link" href="productos.html">Productos</a>
                     <a class="nav-link" href="nosotros.html">Nosotros</a>
                     <a class="nav-link" href="blogs.html">Blogs</a>
-                    <a class="nav-link active" href="contacto.html">Contacto</a>
+                    <a class="nav-link" href="contacto.html">Contacto</a>
                 </div>
-                <!-- Barra de autenticación y carrito -->
+                <!-- Barra de autenticación dinámico y carrito -->
                 <div class="d-flex align-items-center gap-3">
-                    <div class="text-secondary small">
-                        <a href="login.html" class="text-white text-decoration-none">Iniciar sesión</a> | 
-                        <a href="registro.html" class="text-white text-decoration-none">Registrar usuario</a>
+                    
+                    <!-- Contenedor dinámico donde actúa usuarioLogueado.js -->
+                    <div id="auth-container">
+                        <div class="text-secondary small">
+                            <a href="login.html" class="text-white text-decoration-none">Iniciar sesión</a> | 
+                            <a href="registro.html" class="text-white text-decoration-none">Registrar usuario</a>
+                        </div>
                     </div>
+
                     <a class="btn btn-outline-info btn-sm" href="carrito.html">
                         🛒 Carrito (<span id="cart-count">0</span>)
                     </a>
@@ -110,5 +115,6 @@
     <script src="assents/js/datos.js"></script>
     <script src="assents/js/validaciones.js"></script>
     <script src="assents/js/carrito.js"></script>
+    <script src="assents\js\usuarioLogueado.js"></script>
 </body>
 </html>

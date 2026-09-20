@@ -27,10 +27,15 @@
                 </div>
                 <!-- Barra de autenticación y carrito -->
                 <div class="d-flex align-items-center gap-3">
-                    <div class="text-secondary small">
-                        <a href="login.html" class="text-white fw-bold text-decoration-none">Iniciar sesión</a> | 
-                        <a href="registro.html" class="text-white text-decoration-none">Registrar usuario</a>
+                    
+                    <!-- CORRECCIÓN 1: Contenedor id="auth-container" agregado -->
+                    <div id="auth-container">
+                        <div class="text-secondary small">
+                            <a href="login.html" class="text-white fw-bold text-decoration-none">Iniciar sesión</a> | 
+                            <a href="registro.html" class="text-white text-decoration-none">Registrar usuario</a>
+                        </div>
                     </div>
+
                     <a class="btn btn-outline-info btn-sm" href="carrito.html">
                         🛒 Carrito (<span id="cart-count">0</span>)
                     </a>
@@ -113,6 +118,8 @@
     <!-- Scripts del proyecto -->
     <script src="assents/js/datos.js"></script>
     <script src="assents/js/carrito.js"></script>
+    <!-- CORRECCIÓN 2: Agregado usuarioLogueado.js -->
+    <script src="assents/js/usuarioLogueado.js"></script>
     <script src="assents/js/login.js"></script>
 </body>
 </html>

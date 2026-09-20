@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // 1. Verificar autenticación del cliente en sessionStorage
-    let usuarioLogueado = JSON.parse(sessionStorage.getItem("usuarioLogueado"));
+    // 1. Verificar autenticación del cliente en localStorage
+    let usuarioLogueado = JSON.parse(localStorage.getItem("usuarioLogueado"));
 
     if (!usuarioLogueado) {
         alert("Debes iniciar sesión para acceder a tu panel de usuario.");
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (usuarioActualizado) {
         usuarioLogueado = usuarioActualizado;
-        sessionStorage.setItem("usuarioLogueado", JSON.stringify(usuarioLogueado));
+        localStorage.setItem("usuarioLogueado", JSON.stringify(usuarioLogueado));
     }
 
     // 3. Desplegar los datos personales del usuario y su ROL
@@ -67,7 +67,7 @@ function inyectarDatosPerfil(usuario) {
 // Función expuesta globalmente para el onsubmit="crearTicket(event)" del HTML
 function crearTicket(e) {
     if (e) e.preventDefault();
-    const usuarioLogueado = JSON.parse(sessionStorage.getItem("usuarioLogueado"));
+    const usuarioLogueado = JSON.parse(localStorage.getItem("usuarioLogueado"));
     if (usuarioLogueado) {
         guardarNuevoTicket(usuarioLogueado);
     }
@@ -140,7 +140,7 @@ function renderizarTickets(correoUsuario) {
 
 // Función global para cerrar sesión
 function cerrarSesion() {
-    sessionStorage.removeItem("usuarioLogueado");
+    localStorage.removeItem("usuarioLogueado");
     alert("Sesión cerrada correctamente.");
     window.location.href = "login.html";
 }
