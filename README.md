@@ -14,6 +14,9 @@ Plataforma web de e-commerce y gestión postventa enfocada en la cotización, co
 * **Joaquín Alejandro Pérez Martínez**
 * **Emilio Francisco Núñez Trigo**
 
+* ##  Usuario administrador:  admin@duoc.cl
+* ##  Pass administrador:     admin
+
 **Asignatura:** Desarrollo Fullstack II (DSY1104)  
 **Institución:** Duoc UC — Escuela de Informática y Telecomunicaciones  
 **Fecha de Entrega:** 19 de Septiembre de 2026  
