@@ -4,6 +4,16 @@ function validarLogin(event) {
     const correo = document.getElementById("correo").value.trim().toLowerCase();
     const password = document.getElementById("password").value;
 
+    // --- NUEVO: Validar RF-02 (Dominios permitidos) ---
+    const dominiosPermitidos = ["@duoc.cl", "@profesor.duoc.cl", "@gmail.com", "@techgaming.cl"];
+    const esDominioValido = dominiosPermitidos.some(dominio => correo.endsWith(dominio));
+
+    if (!esDominioValido) {
+        alert("El dominio del correo ingresado no está permitido. Solo se aceptan correos @duoc.cl, @profesor.duoc.cl, @gmail.com o @techgaming.cl.");
+        return; // Detiene la ejecución si el dominio no es válido
+    }
+    // -------------------------------------------------
+
     // 1. Validar si es el usuario Administrador
     if (correo === "admin@duoc.cl" && password === "admin") {
         const usuarioAdmin = {

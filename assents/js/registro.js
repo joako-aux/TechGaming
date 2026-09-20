@@ -42,11 +42,15 @@ function validarRegistro(e) {
         return;
     }
 
-    // Validar dominios permitidos
-    if (!correo.endsWith("@duoc.cl") && !correo.endsWith("@profesor.duoc.cl") && !correo.endsWith("@gmail.com")) {
-        alert("Dominio de correo no permitido. Debe ser @duoc.cl, @profesor.duoc.cl o @gmail.com");
+    // --- CORRECCIÓN RF-02: Incluye @techgaming.cl y mejora la validación ---
+    const dominiosPermitidos = ["@duoc.cl", "@profesor.duoc.cl", "@gmail.com", "@techgaming.cl"];
+    const esDominioValido = dominiosPermitidos.some(dominio => correo.endsWith(dominio));
+
+    if (!esDominioValido) {
+        alert("El dominio de correo no está permitido. Debe ser @duoc.cl, @profesor.duoc.cl, @gmail.com o @techgaming.cl");
         return;
     }
+    // -----------------------------------------------------------------------
 
     // Obtener usuarios guardados o inicializar un arreglo vacío
     const usuariosGuardados = JSON.parse(localStorage.getItem("usuarios")) || [];
