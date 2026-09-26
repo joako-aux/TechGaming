@@ -1,0 +1,32 @@
+/* ==========================================================================
+   Efectos de Elevación y Zoom en Imágenes
+   ========================================================================== */
+
+/* --- 1. Elevación suave en las tarjetas de productos --- */
+#productos-destacados .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden; /* Evita que la imagen sobresalga al hacer zoom */
+}
+
+#productos-destacados .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* --- 2. Zoom suave en las imágenes del catálogo --- */
+#productos-destacados .card-img-top {
+    transition: transform 0.4s ease;
+}
+
+#productos-destacados .card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+/* --- 3. Zoom suave en la imagen del Banner Principal --- */
+main section.card img {
+    transition: transform 0.4s ease;
+}
+
+main section.card:hover img {
+    transform: scale(1.03);
+}
